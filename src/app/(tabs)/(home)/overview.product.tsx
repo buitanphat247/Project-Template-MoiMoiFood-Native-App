@@ -1,9 +1,8 @@
 import OverviewHeader from "@/components/products/OverviewHeader";
-import OverviewProductCard from "@/components/products/OverviewProductCard";
+import OverviewProductList from "@/components/products/OverviewProductList";
 import styles from "@/styles/screens_home/overview.product.styles";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type Product = {
@@ -118,8 +117,6 @@ export default function OverviewProduct() {
     setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, favorite: !p.favorite } : p)));
   };
 
-  const ProductCard = ({ item }: { item: Product }) => <OverviewProductCard item={item} onToggleFavorite={toggleFavorite} />;
-
   const HeaderHero = () => <OverviewHeader onBack={() => router.back()} query={query} onChangeQuery={setQuery} />;
 
   return (
@@ -128,13 +125,7 @@ export default function OverviewProduct() {
       <HeaderHero />
 
       {/* Danh sách sản phẩm */}
-      <FlatList
-        data={sorted}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => <ProductCard item={item} />}
-        showsVerticalScrollIndicator={false}
-      />
+      <OverviewProductList data={sorted} contentContainerStyle={styles.listContent} onToggleFavorite={toggleFavorite} />
     </SafeAreaView>
   );
 }

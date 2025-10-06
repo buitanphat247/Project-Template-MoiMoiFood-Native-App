@@ -1,12 +1,12 @@
-import MyButton from "@/components/MyButton";
+import LogoutButton from "@/components/settings/LogoutButton";
 import LogoutConfirmModal from "@/components/settings/LogoutConfirmModal";
-import SettingsListItem from "@/components/settings/SettingsListItem";
+import ProfileCard from "@/components/settings/ProfileCard";
+import SettingsHeader from "@/components/settings/SettingsHeader";
+import SettingsSection from "@/components/settings/SettingsSection";
 import styles from "@/styles/screens_tabs/setting.styles";
-import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { Link } from "expo-router";
 import React, { useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type SettingItem = {
@@ -50,56 +50,32 @@ export default function SettingScreen() {
     <View style={styles.screen}>
       <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
         <ScrollView>
-          <Text style={styles.header}>
-            Settings
-          </Text>
+          <SettingsHeader />
 
-          <View style={styles.profileCard}>
-            <Image source={{ uri: "https://i.pravatar.cc/100?img=12" }} style={styles.avatar} />
-            <View style={{ flex: 1 }}>
-              <Text style={styles.name}>Nguyen Van A</Text>
-              <Text style={styles.email}>nguyenvana@example.com</Text>
-            </View>
-            <Link href="/(stack)/profile" asChild>
-              <TouchableOpacity activeOpacity={0.8} style={styles.editBtn}>
-                <Text style={styles.editText}>Edit</Text>
-              </TouchableOpacity>
-            </Link>
-          </View>
+          <ProfileCard name="Nguyen Van A" email="nguyenvana@example.com" avatarUrl="https://i.pravatar.cc/100?img=12" />
 
           <View style={styles.sections}>
             {/* config general */}
-            <View>
-              <Text style={styles.sectionTitle}>
-                General
-              </Text>
-              <View style={styles.sectionBlock}>
-                {items.map((item) => (
-                  <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
-                ))}
-              </View>
-            </View>
+            <SettingsSection title="General" items={items.map((i) => ({ id: i.id, title: i.title, leading: ICONS[i.icon] }))} />
 
             {/* config help */}
-            <View>
-              <Text style={[styles.sectionTitle, { marginTop: 12 }]}>
-                Help
-              </Text>
-              <View style={styles.sectionBlock}>
-                {helpItems.map((item) => (
-                  <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
-                ))}
-              </View>
-            </View>
+            <SettingsSection title="Help" titleMarginTop={12} items={helpItems.map((i) => ({ id: i.id, title: i.title, leading: ICONS[i.icon] }))} />
 
             {/* config module logout */}
 
-            <MyButton
-              title="Log out"
-              icon={<Feather name="log-out" size={18} color="#b91c1c" />}
-              textColor="#b91c1c"
-              style={{ backgroundColor: "#fee2e2", borderRadius: 10 }}
-              onPress={() => setLogoutVisible(true)}
+            <LogoutButton
+              onPress={() => {
+                return Alert.alert("Log out", "Bạn có chắc chắn muốn đăng xuất không?", [
+                  { text: "Hủy", style: "cancel" },
+                  {
+                    text: "Đăng xuất",
+                    style: "destructive",
+                    onPress: () => {
+                      setLogoutVisible(true);
+                    },
+                  },
+                ]);
+              }}
             />
           </View>
         </ScrollView>
