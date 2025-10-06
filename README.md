@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+# Moi Moi Food – React Native Expo Template
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Moi Moi Food là template ứng dụng giao đồ ăn (food delivery) được thiết kế tối giản, có thể dùng làm nền tảng khởi tạo nhanh dự án mới. Template tập trung vào trải nghiệm duyệt nhà hàng/món ăn, đặt hàng cơ bản và màn hình tài khoản/thiết lập. Kiến trúc dựa trên `expo-router`, style linh hoạt (inline + NativeWind/Tailwind) và component hóa theo domain giúp dễ mở rộng.
 
-## Get started
+## Tính năng chính (Template)
+- Trang chủ với danh mục, banner, tìm kiếm, và danh sách nhà hàng/sản phẩm.
+- Card nhà hàng đẹp mắt: ảnh, đánh giá, danh mục, yêu thích.
+- Carousel ngang dùng FlatList hiển thị tới 20 mục mỗi nhóm.
+- Màn hình Settings có header hồ sơ, nhóm General/Preferences/Help, công tắc Notifications/Dark Mode, banner refer và nút Logout.
+- Điều hướng đa tầng: `(tabs)`, `(stack)`, `(auth)` nhờ `expo-router`.
 
-1. Install dependencies
+## Mục tiêu template
+- Khởi tạo nhanh dự án food delivery mang thương hiệu riêng.
+- Cung cấp cấu trúc thư mục, mẫu UI và component có sẵn để tái sử dụng.
+- Dễ tùy biến: thay màu sắc, font, icon, dữ liệu mock → API thật.
 
-   ```bash
-   npm install
-   ```
+## Tech stack
+- Expo SDK 54, React Native 0.81, React 19.
+- `expo-router`, `@react-navigation/*` (screens), `react-native-safe-area-context`.
+- UI: `@expo/vector-icons`, NativeWind/Tailwind (tùy file), inline style khi phù hợp.
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+## Cài đặt & chạy
+1) Cài dependencies:
 ```bash
-npm run reset-project
+npm install
+```
+2) Chạy dự án:
+```bash
+npx expo start
+```
+Sau khi khởi động, chọn một trong các tùy chọn: Android Emulator, iOS Simulator, hoặc Expo Go.
+
+## Cấu trúc thư mục rút gọn
+- `src/app/` – routing theo thư mục (`(tabs)`, `(stack)`, `(auth)`) và các màn hình chính.
+- `src/components/` – component chia theo domain (`home`, `products`, ...).
+- `assets/` – hình ảnh, icon.
+- `global.css`, `tailwind.config.js` – cấu hình style.
+
+## Quy ước code
+- TypeScript, module theo tính năng, component nhỏ gọn, dễ tái sử dụng.
+- Ưu tiên inline style cho màn hình đơn giản; dùng Tailwind/NativeWind khi cần tốc độ.
+- Lint theo `eslint-config-expo`; giữ code sạch, không cảnh báo.
+
+## Lệnh hữu ích
+```bash
+npm run android   # mở Android
+npm run ios       # mở iOS
+npm run web       # chạy trên web
+npm run lint      # kiểm tra lint
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Ghi chú học tập
+- Thay nội dung dữ liệu giả ở `src/components/**` bằng API thật khi sẵn sàng.
+- Thêm điều hướng `onPress` cho từng mục Settings theo nhu cầu ứng dụng.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+Hỗ trợ thêm: vui lòng mở issue hoặc liên hệ trong lớp học/nhóm Zalo/Discord của khoá học.
