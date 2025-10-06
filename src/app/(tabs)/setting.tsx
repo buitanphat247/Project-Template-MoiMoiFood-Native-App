@@ -1,15 +1,11 @@
+import MyButton from "@/components/MyButton";
+import LogoutConfirmModal from "@/components/settings/LogoutConfirmModal";
+import SettingsListItem from "@/components/settings/SettingsListItem";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import Constants from "expo-constants";
+import { Link } from "expo-router";
 import React, { useState } from "react";
-import {
-  Image,
-  ScrollView,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 type SettingItem = {
@@ -29,6 +25,7 @@ const ICONS = {
 } as const;
 
 export default function SettingScreen() {
+  const [logoutVisible, setLogoutVisible] = useState(false);
   const items: SettingItem[] = [
     { id: "payment", title: "Payment", icon: "payment" },
     { id: "wallet", title: "Living Menu Wallet", icon: "wallet" },
@@ -50,7 +47,7 @@ export default function SettingScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <SafeAreaView>
+      <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <ScrollView>
           <Text
             style={{
@@ -86,26 +83,24 @@ export default function SettingScreen() {
               }}
             />
             <View style={{ flex: 1 }}>
-              <Text
-                style={{ fontSize: 16, fontWeight: "600", color: "#111827" }}
-              >
-                Nguyen Van A
-              </Text>
-              <Text style={{ color: "#6b7280", marginTop: 2 }}>
-                nguyenvana@example.com
-              </Text>
+              <Text style={{ fontSize: 16, fontWeight: "600", color: "#111827" }}>Nguyen Van A</Text>
+              <Text style={{ color: "#6b7280", marginTop: 2 }}>nguyenvana@example.com</Text>
             </View>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={{
-                paddingHorizontal: 12,
-                paddingVertical: 8,
-                borderRadius: 8,
-                backgroundColor: "#e5e7eb",
-              }}
-            >
-              <Text style={{ color: "#111827", fontWeight: "600" }}>Edit</Text>
-            </TouchableOpacity>
+            <Link href="/(stack)/profile" asChild>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  borderRadius: 8,
+                  backgroundColor: "#e5e7eb",
+                }}
+              >
+                <Text style={{ color: "#111827", fontWeight: "600" }}>Edit</Text>
+              </TouchableOpacity>
+            </Link>
           </View>
 
           <View
@@ -114,6 +109,7 @@ export default function SettingScreen() {
               display: "flex",
               flexDirection: "column",
               gap: 20,
+              paddingBottom: 20,
             }}
           >
             {/* config general */}
@@ -128,48 +124,9 @@ export default function SettingScreen() {
               >
                 General
               </Text>
-
-              <View
-                style={{
-                  backgroundColor: "#ffffff",
-                }}
-              >
+              <View style={{ backgroundColor: "#ffffff" }}>
                 {items.map((item) => (
-                  <TouchableOpacity
-                    key={item.id}
-                    activeOpacity={0.7}
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      paddingVertical: 10,
-                    }}
-                  >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                    >
-                      <View
-                        style={{
-                          width: 32,
-                          height: 32,
-                          borderRadius: 6,
-                          backgroundColor: "#f3f4f6",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          marginRight: 12,
-                        }}
-                      >
-                        {ICONS[item.icon]}
-                      </View>
-                      <Text style={{ fontSize: 16, color: "#111827" }}>
-                        {item.title}
-                      </Text>
-                    </View>
-                    <Feather name="chevron-right" size={20} color="#9ca3af" />
-                  </TouchableOpacity>
+                  <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
                 ))}
               </View>
             </View>
@@ -187,115 +144,34 @@ export default function SettingScreen() {
               >
                 Help
               </Text>
-
               <View style={{ backgroundColor: "#ffffff" }}>
                 {helpItems.map((item) => (
-                  <TouchableOpacity
-                    key={item.id}
-                    activeOpacity={0.7}
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      paddingVertical: 10,
-                    }}
-                  >
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <View
-                        style={{
-                          width: 32,
-                          height: 32,
-                          borderRadius: 6,
-                          backgroundColor: "#f3f4f6",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          marginRight: 12,
-                        }}
-                      >
-                        {ICONS[item.icon]}
-                      </View>
-                      <Text style={{ fontSize: 16, color: "#111827" }}>
-                        {item.title}
-                      </Text>
-                    </View>
-                    <Feather name="chevron-right" size={20} color="#9ca3af" />
-                  </TouchableOpacity>
+                  <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
                 ))}
               </View>
             </View>
 
             {/* config module logout */}
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 10,
-              }}
-            >
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={{
-                  paddingHorizontal: 16,
-                  paddingVertical: 14,
-                  borderRadius: 10,
-                  backgroundColor: "#e0e7ff",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 6,
-                      backgroundColor: "#dbeafe",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginRight: 12,
-                    }}
-                  >
-                    <FontAwesome5
-                      name="user-friends"
-                      size={18}
-                      color="#1d4ed8"
-                    />
-                  </View>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: "#1d4ed8",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Refer Friends, Get ₹150
-                  </Text>
-                </View>
-                <Feather name="chevron-right" size={20} color="#1d4ed8" />
-              </TouchableOpacity>
 
-              <TouchableOpacity
-                activeOpacity={0.85}
-                style={{
-                  paddingVertical: 14,
-                  borderRadius: 10,
-                  backgroundColor: "#fee2e2",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{ color: "#b91c1c", fontWeight: "700", fontSize: 16 }}
-                >
-                  Log out
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <MyButton
+              title="Log out"
+              icon={<Feather name="log-out" size={18} color="#b91c1c" />}
+              textColor="#b91c1c"
+              style={{ backgroundColor: "#fee2e2", borderRadius: 10 }}
+              onPress={() => setLogoutVisible(true)}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      <LogoutConfirmModal
+        visible={logoutVisible}
+        onCancel={() => setLogoutVisible(false)}
+        onConfirm={() => {
+          setLogoutVisible(false);
+          console.log("Log out");
+        }}
+      />
     </View>
   );
 }

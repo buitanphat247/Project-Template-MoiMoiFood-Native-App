@@ -15,7 +15,7 @@ const HeaderHome = () => {
       }}
     >
       {/* Menu hamburger bên trái */}
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{
           width: 40,
           height: 40,
@@ -31,7 +31,7 @@ const HeaderHome = () => {
         }}
       >
         <AntDesign name="menu" size={24} color="black" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* Địa chỉ giao hàng ở giữa */}
       <View

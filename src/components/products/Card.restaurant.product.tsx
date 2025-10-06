@@ -26,19 +26,10 @@ interface RestaurantCardProps {
   style?: any;
 }
 
-const CardRestaurantProduct = ({
-  restaurant,
-  onPress,
-  onFavoritePress,
-  style,
-}: RestaurantCardProps) => {
+const CardRestaurantProduct = ({ restaurant, onPress, onFavoritePress, style }: RestaurantCardProps) => {
   return (
-    <TouchableOpacity
-      style={[styles.container, style]}
-      onPress={onPress}
-      activeOpacity={0.8}
-    >
-      <Link href={`/detail.product`}>
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress} activeOpacity={0.8}>
+      <Link href={`/(tabs)/(home)/detail.product`}>
         <RestaurantImage
           imageUrl={restaurant.imageUrl}
           rating={restaurant.rating}
@@ -46,13 +37,7 @@ const CardRestaurantProduct = ({
           isFavorite={restaurant.isFavorite}
           onFavoritePress={onFavoritePress}
         />
-
-        <RestaurantInfo
-          name={restaurant.name}
-          isVerified={restaurant.isVerified}
-          deliveryInfo={restaurant.deliveryInfo}
-        />
-
+        <RestaurantInfo name={restaurant.name} isVerified={restaurant.isVerified} deliveryInfo={restaurant.deliveryInfo} />
         <RestaurantCategories categories={restaurant.categories} />
       </Link>
     </TouchableOpacity>

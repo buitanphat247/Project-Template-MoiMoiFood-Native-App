@@ -10,7 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function index() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffff" }}>
+    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
       {/* Sticky Header */}
       <HeaderHome />
       {/* Nội dung scrollable */}
@@ -28,6 +28,7 @@ export default function index() {
             flexDirection: "column",
             gap: 10,
             marginTop: 10,
+            paddingBottom: 20,
           }}
         >
           <SectionFindFood />

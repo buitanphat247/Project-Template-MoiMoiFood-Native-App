@@ -57,9 +57,7 @@ const CategoryHome = () => {
 
   return (
     <View >
-     
-      
-      <ScrollView
+               <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{

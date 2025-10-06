@@ -1,4 +1,5 @@
-import { FlatList, View } from "react-native";
+import MyFlatlist from "@/components/MyFlatlist";
+import { View } from "react-native";
 import CardRestaurantProduct from "../products/Card.restaurant.product";
 import CategorySectionHome from "./category.section.hom";
 
@@ -11,12 +12,19 @@ const CategoryPartHome = () => {
     { key: 5, name: "Nearby Eats", ref: "" },
   ];
 
+  const shuffle = (arr: any[]) => {
+    for (let i = arr.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  };
+
   const restaurantsData = [
     {
       id: "1",
       name: "Korean BBQ 1",
-      imageUrl:
-        "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
+      imageUrl: "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
       rating: 4.9,
       reviewCount: 346,
       isVerified: false,
@@ -30,8 +38,7 @@ const CategoryPartHome = () => {
     {
       id: "2",
       name: "Green Garden 2",
-      imageUrl:
-        "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
+      imageUrl: "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
       rating: 4.3,
       reviewCount: 384,
       isVerified: true,
@@ -45,8 +52,7 @@ const CategoryPartHome = () => {
     {
       id: "3",
       name: "Pizza Hub 3",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 3.8,
       reviewCount: 265,
       isVerified: true,
@@ -60,8 +66,7 @@ const CategoryPartHome = () => {
     {
       id: "4",
       name: "Green Garden 4",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 4.1,
       reviewCount: 38,
       isVerified: true,
@@ -90,8 +95,7 @@ const CategoryPartHome = () => {
     {
       id: "6",
       name: "Noodle Corner 6",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.0,
       reviewCount: 255,
       isVerified: true,
@@ -105,8 +109,7 @@ const CategoryPartHome = () => {
     {
       id: "7",
       name: "Korean BBQ 7",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 4.8,
       reviewCount: 108,
       isVerified: true,
@@ -120,8 +123,7 @@ const CategoryPartHome = () => {
     {
       id: "8",
       name: "Noodle Corner 8",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 4.6,
       reviewCount: 209,
       isVerified: false,
@@ -135,8 +137,7 @@ const CategoryPartHome = () => {
     {
       id: "9",
       name: "Green Garden 9",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.3,
       reviewCount: 455,
       isVerified: false,
@@ -150,8 +151,7 @@ const CategoryPartHome = () => {
     {
       id: "10",
       name: "Burger Town 10",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 4.5,
       reviewCount: 517,
       isVerified: true,
@@ -165,8 +165,7 @@ const CategoryPartHome = () => {
     {
       id: "11",
       name: "Burger Town 11",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 4.4,
       reviewCount: 291,
       isVerified: true,
@@ -195,8 +194,7 @@ const CategoryPartHome = () => {
     {
       id: "13",
       name: "Korean BBQ 13",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 4.1,
       reviewCount: 233,
       isVerified: true,
@@ -210,8 +208,7 @@ const CategoryPartHome = () => {
     {
       id: "14",
       name: "Noodle Corner 14",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 4.1,
       reviewCount: 248,
       isVerified: true,
@@ -225,8 +222,7 @@ const CategoryPartHome = () => {
     {
       id: "15",
       name: "Coffee Dream 15",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 4.0,
       reviewCount: 130,
       isVerified: false,
@@ -240,8 +236,7 @@ const CategoryPartHome = () => {
     {
       id: "16",
       name: "Green Garden 16",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 5.0,
       reviewCount: 143,
       isVerified: false,
@@ -270,8 +265,7 @@ const CategoryPartHome = () => {
     {
       id: "18",
       name: "Pho House 18",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 4.8,
       reviewCount: 412,
       isVerified: true,
@@ -285,8 +279,7 @@ const CategoryPartHome = () => {
     {
       id: "19",
       name: "Burger Town 19",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 3.9,
       reviewCount: 501,
       isVerified: false,
@@ -300,8 +293,7 @@ const CategoryPartHome = () => {
     {
       id: "20",
       name: "Sushi Master 20",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 4.2,
       reviewCount: 303,
       isVerified: false,
@@ -315,8 +307,7 @@ const CategoryPartHome = () => {
     {
       id: "21",
       name: "Burger Town 21",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 5.0,
       reviewCount: 477,
       isVerified: false,
@@ -345,8 +336,7 @@ const CategoryPartHome = () => {
     {
       id: "23",
       name: "Green Garden 23",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 4.2,
       reviewCount: 469,
       isVerified: true,
@@ -375,8 +365,7 @@ const CategoryPartHome = () => {
     {
       id: "25",
       name: "Pizza Hub 25",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 3.5,
       reviewCount: 494,
       isVerified: true,
@@ -404,8 +393,7 @@ const CategoryPartHome = () => {
     {
       id: "27",
       name: "Green Garden 27",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.6,
       reviewCount: 118,
       isVerified: true,
@@ -419,8 +407,7 @@ const CategoryPartHome = () => {
     {
       id: "28",
       name: "Green Garden 28",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 3.6,
       reviewCount: 395,
       isVerified: false,
@@ -434,8 +421,7 @@ const CategoryPartHome = () => {
     {
       id: "29",
       name: "Spice Route 29",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 3.5,
       reviewCount: 348,
       isVerified: true,
@@ -449,8 +435,7 @@ const CategoryPartHome = () => {
     {
       id: "30",
       name: "Green Garden 30",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 3.8,
       reviewCount: 283,
       isVerified: true,
@@ -464,8 +449,7 @@ const CategoryPartHome = () => {
     {
       id: "31",
       name: "Spice Route 31",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.4,
       reviewCount: 228,
       isVerified: true,
@@ -479,8 +463,7 @@ const CategoryPartHome = () => {
     {
       id: "32",
       name: "Burger Town 32",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 4.8,
       reviewCount: 489,
       isVerified: true,
@@ -494,8 +477,7 @@ const CategoryPartHome = () => {
     {
       id: "33",
       name: "Noodle Corner 33",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 3.7,
       reviewCount: 57,
       isVerified: true,
@@ -509,8 +491,7 @@ const CategoryPartHome = () => {
     {
       id: "34",
       name: "Korean BBQ 34",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.6,
       reviewCount: 517,
       isVerified: true,
@@ -524,8 +505,7 @@ const CategoryPartHome = () => {
     {
       id: "35",
       name: "Burger Town 35",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 3.7,
       reviewCount: 516,
       isVerified: true,
@@ -539,8 +519,7 @@ const CategoryPartHome = () => {
     {
       id: "36",
       name: "Taco Bay 36",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 4.0,
       reviewCount: 203,
       isVerified: true,
@@ -554,8 +533,7 @@ const CategoryPartHome = () => {
     {
       id: "37",
       name: "Coffee Dream 37",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.7,
       reviewCount: 457,
       isVerified: true,
@@ -613,8 +591,7 @@ const CategoryPartHome = () => {
     {
       id: "41",
       name: "Burger Town 41",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 3.9,
       reviewCount: 231,
       isVerified: true,
@@ -628,8 +605,7 @@ const CategoryPartHome = () => {
     {
       id: "42",
       name: "Pizza Hub 42",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.2,
       reviewCount: 394,
       isVerified: true,
@@ -643,8 +619,7 @@ const CategoryPartHome = () => {
     {
       id: "43",
       name: "Sushi Master 43",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 3.6,
       reviewCount: 398,
       isVerified: true,
@@ -658,8 +633,7 @@ const CategoryPartHome = () => {
     {
       id: "44",
       name: "Spice Route 44",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 4.4,
       reviewCount: 42,
       isVerified: false,
@@ -703,8 +677,7 @@ const CategoryPartHome = () => {
     {
       id: "47",
       name: "Green Garden 47",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.4,
       reviewCount: 274,
       isVerified: false,
@@ -718,8 +691,7 @@ const CategoryPartHome = () => {
     {
       id: "48",
       name: "Pho House 48",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 4.3,
       reviewCount: 384,
       isVerified: true,
@@ -778,8 +750,7 @@ const CategoryPartHome = () => {
     {
       id: "52",
       name: "Pho House 52",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.9,
       reviewCount: 400,
       isVerified: false,
@@ -808,8 +779,7 @@ const CategoryPartHome = () => {
     {
       id: "54",
       name: "Coffee Dream 54",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 4.0,
       reviewCount: 492,
       isVerified: true,
@@ -866,8 +836,7 @@ const CategoryPartHome = () => {
     {
       id: "58",
       name: "Burger Town 58",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 3.8,
       reviewCount: 40,
       isVerified: false,
@@ -881,8 +850,7 @@ const CategoryPartHome = () => {
     {
       id: "59",
       name: "Noodle Corner 59",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.3,
       reviewCount: 104,
       isVerified: true,
@@ -911,8 +879,7 @@ const CategoryPartHome = () => {
     {
       id: "61",
       name: "Taco Bay 61",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.8,
       reviewCount: 142,
       isVerified: false,
@@ -926,8 +893,7 @@ const CategoryPartHome = () => {
     {
       id: "62",
       name: "Korean BBQ 62",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 3.7,
       reviewCount: 340,
       isVerified: true,
@@ -941,8 +907,7 @@ const CategoryPartHome = () => {
     {
       id: "63",
       name: "Korean BBQ 63",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 4.9,
       reviewCount: 238,
       isVerified: false,
@@ -956,8 +921,7 @@ const CategoryPartHome = () => {
     {
       id: "64",
       name: "Noodle Corner 64",
-      imageUrl:
-        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      imageUrl: "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
       rating: 3.8,
       reviewCount: 483,
       isVerified: true,
@@ -971,8 +935,7 @@ const CategoryPartHome = () => {
     {
       id: "65",
       name: "Green Garden 65",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 3.9,
       reviewCount: 456,
       isVerified: false,
@@ -986,8 +949,7 @@ const CategoryPartHome = () => {
     {
       id: "66",
       name: "Noodle Corner 66",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 4.7,
       reviewCount: 456,
       isVerified: true,
@@ -1001,8 +963,7 @@ const CategoryPartHome = () => {
     {
       id: "67",
       name: "Noodle Corner 67",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 4.1,
       reviewCount: 332,
       isVerified: true,
@@ -1031,8 +992,7 @@ const CategoryPartHome = () => {
     {
       id: "69",
       name: "Korean BBQ 69",
-      imageUrl:
-        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
       rating: 4.7,
       reviewCount: 461,
       isVerified: true,
@@ -1061,8 +1021,7 @@ const CategoryPartHome = () => {
     {
       id: "71",
       name: "Green Garden 71",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
       rating: 4.2,
       reviewCount: 419,
       isVerified: true,
@@ -1104,8 +1063,7 @@ const CategoryPartHome = () => {
     {
       id: "74",
       name: "Burger Town 74",
-      imageUrl:
-        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      imageUrl: "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
       rating: 3.8,
       reviewCount: 247,
       isVerified: false,
@@ -1119,8 +1077,7 @@ const CategoryPartHome = () => {
     {
       id: "75",
       name: "Green Garden 75",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
       rating: 3.9,
       reviewCount: 500,
       isVerified: false,
@@ -1134,8 +1091,7 @@ const CategoryPartHome = () => {
     {
       id: "76",
       name: "Spice Route 76",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 4.5,
       reviewCount: 464,
       isVerified: true,
@@ -1149,8 +1105,7 @@ const CategoryPartHome = () => {
     {
       id: "77",
       name: "Pho House 77",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
       rating: 4.8,
       reviewCount: 67,
       isVerified: false,
@@ -1164,8 +1119,7 @@ const CategoryPartHome = () => {
     {
       id: "78",
       name: "Spice Route 78",
-      imageUrl:
-        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      imageUrl: "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
       rating: 3.8,
       reviewCount: 87,
       isVerified: true,
@@ -1179,8 +1133,7 @@ const CategoryPartHome = () => {
     {
       id: "79",
       name: "Coffee Dream 79",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
       rating: 4.7,
       reviewCount: 102,
       isVerified: true,
@@ -1204,18 +1157,13 @@ const CategoryPartHome = () => {
       {categories.map((category) => (
         <View key={category.key}>
           <CategorySectionHome data={restaurantsData} title={category.name} />
-          <FlatList
+          <MyFlatlist
             horizontal
             showsHorizontalScrollIndicator={false}
-            data={restaurantsData.slice(0, 20)}
+            data={shuffle(restaurantsData.slice(0, 20))}
             keyExtractor={(item) => item.id}
-            style={{
-              paddingBottom: 16,
-            }}
             ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
-            renderItem={({ item }) => (
-              <CardRestaurantProduct restaurant={item} style={{ width: 280 }} />
-            )}
+            renderItem={({ item }) => <CardRestaurantProduct restaurant={item} style={{ width: 280 }} />}
           />
         </View>
       ))}

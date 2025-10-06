@@ -20,7 +20,6 @@ export default function _layout() {
           borderTopColor: "#E0E0E0",
           height: 60 + insets.bottom,
           paddingBottom: insets.bottom + 8,
-          paddingTop: 8,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -30,7 +29,7 @@ export default function _layout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: "Home",
           tabBarIcon: ({ color, size, focused }) => (
@@ -82,6 +81,7 @@ export default function _layout() {
           ),
         }}
       />
+      {/* Hide nested Home stack screens from the tab bar */}
     </Tabs>
   );
 }

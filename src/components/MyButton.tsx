@@ -22,14 +22,7 @@ export default function MyButton({
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.1,
-            shadowRadius: 3.84,
-            elevation: 5,
+           
             gap: 10,
             height: 50,
           },

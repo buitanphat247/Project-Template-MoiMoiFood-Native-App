@@ -1,14 +1,7 @@
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
-import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
@@ -88,10 +81,7 @@ const ProfileScreen = () => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.back()}
-        >
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
           <AntDesign name="arrow-left" size={24} color="#333" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Tài khoản</Text>
@@ -122,9 +112,7 @@ const ProfileScreen = () => {
           {menuItems.map((item) => (
             <TouchableOpacity key={item.id} style={styles.menuItem}>
               <View style={styles.menuItemLeft}>
-                <View style={[styles.iconContainer, { backgroundColor: `${item.color}20` }]}>
-                  {renderIcon(item.iconType, item.icon, item.color)}
-                </View>
+                <View style={[styles.iconContainer, { backgroundColor: `${item.color}20` }]}>{renderIcon(item.iconType, item.icon, item.color)}</View>
                 <Text style={styles.menuItemText}>{item.title}</Text>
               </View>
               <AntDesign name="right" size={16} color="#C4C4C4" />
@@ -251,6 +239,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   versionSection: {
+    paddingTop: 10,
     alignItems: "center",
   },
   versionText: {
