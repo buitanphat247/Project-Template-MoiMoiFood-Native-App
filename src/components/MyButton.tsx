@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { MyButtonProps } from "../interface/MyButtonInterface";
+import styles from "../styles/component_common/my.button.styles";
 
 export default function MyButton({
   title,
@@ -14,33 +15,11 @@ export default function MyButton({
       onPress={onPress}
       style={({ pressed }) => pressed && { opacity: 0.8 }}
     >
-      <View
-        style={[
-          {
-            backgroundColor: "#ffffff",
-            borderRadius: 50,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-           
-            gap: 10,
-            height: 50,
-          },
-          style,
-        ]}
-      >
+      <View style={[styles.container, style]}>
         {icon}
         {title && (
           <Text
-            style={[
-              {
-                color: "black",
-                fontSize: 16,
-                fontWeight: "600",
-                textAlign: "center",
-              },
-              textColor && { color: textColor },
-            ]}
+            style={[styles.text, textColor && { color: textColor }]}
           >
             {title}
           </Text>

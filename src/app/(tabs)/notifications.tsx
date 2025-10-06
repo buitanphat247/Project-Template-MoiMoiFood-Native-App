@@ -1,3 +1,4 @@
+import styles from "@/styles/screens_tabs/notifications.styles";
 import Feather from "@expo/vector-icons/Feather";
 import React, { useMemo, useState } from "react";
 import { FlatList, RefreshControl, Text, TouchableOpacity, View } from "react-native";
@@ -153,50 +154,26 @@ export default function NotificationsScreen() {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        style={{
-          paddingVertical: 12,
-          paddingHorizontal: 16,
-          backgroundColor: isUnread ? "#F8FAFC" : "#FFFFFF",
-          borderBottomColor: "#E5E7EB",
-          borderBottomWidth: 1,
-          gap: 10,
-        }}
+        style={[styles.item, { backgroundColor: isUnread ? "#F8FAFC" : "#FFFFFF" }]}
         onPress={() => {
           setNotifications((prev) => prev.map((n) => (n.id === item.id ? { ...n, read: true } : n)));
         }}
       >
-        <View style={{ flexDirection: "row", alignItems: "flex-start", gap: 12 }}>
-          <View
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: "#F1F5F9",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+        <View style={styles.itemRow}>
+          <View style={styles.iconWrap}>
             {renderIcon(item.type)}
           </View>
           <View style={{ flex: 1, gap: 4 }}>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: isUnread ? "700" : "600",
-                  color: "#111827",
-                  flexShrink: 1,
-                }}
-                numberOfLines={1}
-              >
+              <Text style={[styles.itemTitle, { fontWeight: isUnread ? "700" : "600" }]} numberOfLines={1}>
                 {item.title}
               </Text>
               {isUnread && <View style={{ width: 8, height: 8, backgroundColor: "#EF4444", borderRadius: 4 }} />}
             </View>
-            <Text style={{ fontSize: 13, color: "#4B5563" }} numberOfLines={2}>
+            <Text style={styles.itemMsg} numberOfLines={2}>
               {item.message}
             </Text>
-            <Text style={{ fontSize: 12, color: "#9CA3AF" }}>{item.time}</Text>
+            <Text style={styles.itemTime}>{item.time}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -211,15 +188,15 @@ export default function NotificationsScreen() {
   );
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <View style={{ paddingHorizontal: 16, paddingVertical: 12, borderBottomColor: "#E5E7EB", borderBottomWidth: 1 }}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-          <Text style={{ fontSize: 20, fontWeight: "700", color: "#111827" }}>Thông báo</Text>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
+      <View style={styles.topBar}>
+        <View style={styles.topRow}>
+          <Text style={styles.title}>Thông báo</Text>
           <TouchableOpacity onPress={markAllRead} activeOpacity={0.7}>
-            <Text style={{ color: "#3B82F6", fontWeight: "600" }}>Đã đọc hết</Text>
+            <Text style={styles.markAll}>Đã đọc hết</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row", gap: 8, marginTop: 12 }}>
+        <View style={styles.filters}>
           {[
             { key: "all", label: "Tất cả" },
             { key: "promo", label: "Khuyến mãi" },
@@ -231,12 +208,7 @@ export default function NotificationsScreen() {
               <TouchableOpacity
                 key={t.key}
                 onPress={() => setFilter(t.key as any)}
-                style={{
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  borderRadius: 999,
-                  backgroundColor: isActive ? "#111827" : "#F3F4F6",
-                }}
+                style={[styles.filterChip, { backgroundColor: isActive ? "#111827" : "#F3F4F6" }]}
               >
                 <Text style={{ color: isActive ? "#FFFFFF" : "#111827", fontWeight: "600", fontSize: 13 }}>{t.label}</Text>
               </TouchableOpacity>

@@ -1,3 +1,4 @@
+import styles from "@/styles/screens_home/detail.product.styles";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
@@ -51,52 +52,52 @@ export default function DetailProduct() {
   };
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
         {/* Image + actions */}
-        <View style={{ paddingHorizontal: 16, paddingTop: 8 }}>
-          <View style={{ position: "relative" }}>
-            <Image source={{ uri: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop" }} style={{ width: "100%", height: 190, borderRadius: 16 }} />
-            <TouchableOpacity onPress={() => router.back()} activeOpacity={0.8} style={{ position: "absolute", top: 10, left: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: "#F3F4F6", alignItems: "center", justifyContent: "center" }}>
+        <View style={styles.imageWrap}>
+          <View style={styles.imageBox}>
+            <Image source={{ uri: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop" }} style={styles.hero} />
+            <TouchableOpacity onPress={() => router.back()} activeOpacity={0.8} style={styles.backBtn}>
               <Feather name="chevron-left" size={18} color="#111827" />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.8} style={{ position: "absolute", top: 10, right: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: "#F3F4F6", alignItems: "center", justifyContent: "center" }}>
+            <TouchableOpacity activeOpacity={0.8} style={styles.heartBtn}>
               <Ionicons name="heart-outline" size={18} color="#111827" />
             </TouchableOpacity>
           </View>
         </View>
 
         {/* Title + rating + price + qty */}
-        <View style={{ paddingHorizontal: 16, marginTop: 12 }}>
-          <Text style={{ fontSize: 22, fontWeight: "900", color: "#111827" }}>Ground Beef Tacos</Text>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 6, marginTop: 8 }}>
+        <View style={styles.content}>
+          <Text style={styles.title}>Ground Beef Tacos</Text>
+          <View style={styles.ratingRow}>
             <Ionicons name="star" size={14} color="#F59E0B" />
             <Text style={{ fontWeight: "700", color: "#111827" }}>4.5</Text>
             <Text style={{ color: "#6B7280" }}>(30+)</Text>
             <TouchableOpacity><Text style={{ color: "#3B82F6", marginLeft: 6 }}>See Review</Text></TouchableOpacity>
           </View>
 
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 10 }}>
-            <Text style={{ fontSize: 28, fontWeight: "900", color: "#EF4444" }}>$9.50</Text>
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-              <TouchableOpacity onPress={() => setQty((q) => Math.max(1, q - 1))} style={{ width: 32, height: 32, borderRadius: 16, borderWidth: 2, borderColor: "#D1D5DB", alignItems: "center", justifyContent: "center" }}>
+          <View style={styles.priceRow}>
+            <Text style={styles.price}>$9.50</Text>
+            <View style={styles.qtyRow}>
+              <TouchableOpacity onPress={() => setQty((q) => Math.max(1, q - 1))} style={styles.qtyBtnMinus}>
                 <Feather name="minus" size={16} color="#111827" />
               </TouchableOpacity>
               <Text style={{ width: 24, textAlign: "center", fontWeight: "700", color: "#111827" }}>{qty.toString().padStart(2, "0")}</Text>
-              <TouchableOpacity onPress={() => setQty((q) => q + 1)} style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: "#F97316", alignItems: "center", justifyContent: "center" }}>
+              <TouchableOpacity onPress={() => setQty((q) => q + 1)} style={styles.qtyBtnPlus}>
                 <Feather name="plus" size={16} color="#FFFFFF" />
               </TouchableOpacity>
             </View>
           </View>
 
-          <Text style={{ color: "#6B7280", marginTop: 10, lineHeight: 20 }}>
+          <Text style={styles.desc}>
             Brown the beef better. Lean ground beef – I like to use 85% lean angus. Garlic – use fresh chopped. Spices – chili powder, cumin, onion powder.
           </Text>
         </View>
 
         {/* Choice of add on */}
-        <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
-          <Text style={{ fontWeight: "800", color: "#111827" }}>Choice of Add On</Text>
+        <View style={styles.addOnWrap}>
+          <Text style={styles.addOnTitle}>Choice of Add On</Text>
           <FlatList
             data={ADDONS}
             keyExtractor={(i) => i.id}
@@ -107,10 +108,10 @@ export default function DetailProduct() {
         </View>
 
         {/* Add to cart */}
-        <View style={{ paddingHorizontal: 16, marginTop: 20, marginBottom: 10 }}>
-          <TouchableOpacity activeOpacity={0.85} style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: "#F97316", height: 48, borderRadius: 999 }}>
+        <View style={styles.ctaWrap}>
+          <TouchableOpacity activeOpacity={0.85} style={styles.ctaBtn}>
             <Ionicons name="cart" size={18} color="#FFFFFF" />
-            <Text style={{ color: "#FFFFFF", fontWeight: "800" }}>ADD TO CART</Text>
+            <Text style={styles.ctaText}>ADD TO CART</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

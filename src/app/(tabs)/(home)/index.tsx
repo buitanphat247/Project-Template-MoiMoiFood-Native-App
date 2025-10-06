@@ -6,11 +6,12 @@ import SectionFindFood from "@/components/home/search.home";
 import React from "react";
 import { ScrollView, View } from "react-native";
 
+import styles from "@/styles/screens_home/home.index.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function index() {
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
       {/* Sticky Header */}
       <HeaderHome />
       {/* Nội dung scrollable */}
@@ -21,16 +22,7 @@ export default function index() {
         showsVerticalScrollIndicator={false}
       >
         <BannerHome />
-        <View
-          style={{
-            paddingHorizontal: 16,
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-            marginTop: 10,
-            paddingBottom: 20,
-          }}
-        >
+        <View style={styles.content}>
           <SectionFindFood />
           <CategoryHome />
           <CategoryPartHome />

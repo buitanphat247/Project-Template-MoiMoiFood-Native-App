@@ -2,9 +2,9 @@ import * as React from "react";
 import { Dimensions, Image, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, {
-  ICarouselInstance,
-  Pagination,
+  ICarouselInstance
 } from "react-native-reanimated-carousel";
+import styles from "../../styles/component_homes/banner.home.styles";
 
 const width = Dimensions.get("window").width;
 const BannerHome = () => {
@@ -27,7 +27,7 @@ const BannerHome = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Carousel
         ref={ref}
         width={width}
@@ -40,20 +40,8 @@ const BannerHome = () => {
 
         autoPlayInterval={2000}
         renderItem={({ item, index }) => (
-          <View
-            style={{
-              flex: 1,
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              source={item.img}
-              style={{
-                width: width,
-                height: width / 3,
-                resizeMode: "cover",
-              }}
-            />
+          <View style={styles.slide}>
+            <Image source={item.img} style={styles.image} />
           </View>
         )}
       />

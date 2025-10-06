@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
+import { Link } from "expo-router";
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
+import styles from "../../styles/component_products/card.restaurant.product.styles";
 import RestaurantCategories from "./RestaurantCategories";
 import RestaurantImage from "./RestaurantImage";
 import RestaurantInfo from "./RestaurantInfo";
-import { Link } from "expo-router";
 
 interface RestaurantCardProps {
   restaurant: {
@@ -43,15 +43,5 @@ const CardRestaurantProduct = ({ restaurant, onPress, onFavoritePress, style }: 
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "#e0e0e0",
-  },
-});
 
 export default CardRestaurantProduct;

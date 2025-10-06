@@ -1,4 +1,5 @@
 import CardFavouriteProduct from "@/components/products/card.favourite.product";
+import styles from "@/styles/screens_tabs/favorites.styles";
 import React, { useMemo, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -98,22 +99,18 @@ export default function FavoritesScreen() {
   const data = useMemo(() => items.filter((i) => i.favorite), [items]);
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12 }}>
-        <Text style={{ fontSize: 24, fontWeight: "800", color: "#111827" }}>Đã thích</Text>
-        <Text style={{ color: "#6B7280", marginTop: 4 }}>Món ăn yêu thích của bạn</Text>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
+      <View style={styles.headerWrap}>
+        <Text style={styles.headerTitle}>Đã thích</Text>
+        <Text style={styles.headerDesc}>Món ăn yêu thích của bạn</Text>
       </View>
 
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 10 }}
+        contentContainerStyle={styles.listContent}
         renderItem={({ item }) => <CardFavouriteProduct product={item} style={{ marginBottom: 12 }} onToggleFavourite={onToggleFavourite} />}
-        ListEmptyComponent={
-          <View style={{ padding: 24, alignItems: "center" }}>
-            <Text style={{ color: "#6B7280" }}>Chưa có món nào được thêm vào yêu thích</Text>
-          </View>
-        }
+        ListEmptyComponent={<View style={styles.emptyWrap}><Text style={styles.emptyText}>Chưa có món nào được thêm vào yêu thích</Text></View>}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>

@@ -1,4 +1,5 @@
 import { Dimensions, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import styles from "../../styles/component_homes/category.home.styles";
 
 const data1 = [
   {
@@ -52,62 +53,29 @@ const data1 = [
 ];
 
 const CategoryHome = () => {
-  const screenWidth = Dimensions.get('window').width;
-  const itemWidth = 80; // Chiều rộng mỗi item
+  const screenWidth = Dimensions.get("window").width;
 
   return (
-    <View >
-               <ScrollView
+    <View style={styles.container}>
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          gap: 12,
-        }}
-        style={{ flexGrow: 0 }}
+        contentContainerStyle={styles.scrollContent}
+        style={styles.scroll}
       >
         {data1.map((item, index) => (
           <TouchableOpacity
             key={item.key}
-            style={{
-              alignItems: 'center',
-              width: itemWidth,
-              paddingVertical: 8,
-            }}
+            style={styles.item}
             activeOpacity={0.7}
           >
-            <View style={{
-              width: 60,
-              height: 60,
-              borderRadius: 30,
-              backgroundColor: '#f8f9fa',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginBottom: 8,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.1,
-              shadowRadius: 3.84,
-              elevation: 5,
-            }}>
+            <View style={styles.avatar}>
               <Image 
                 source={item.source} 
-                style={{
-                  width: 40,
-                  height: 40,
-                  resizeMode: 'contain'
-                }}
+                style={styles.icon}
               />
             </View>
-            <Text style={{
-              fontSize: 12,
-              textAlign: 'center',
-              color: '#666',
-              fontWeight: '500',
-              lineHeight: 16,
-            }}>
+            <Text style={styles.name}>
               {item.name}
             </Text>
           </TouchableOpacity>

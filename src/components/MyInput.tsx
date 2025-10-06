@@ -2,6 +2,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import React, { useMemo, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import type { MyInputProps } from "../interface/MyInputInterface";
+import styles from "../styles/component_common/my.input.styles";
 
 export default function MyInput({
   value,
@@ -22,36 +23,14 @@ export default function MyInput({
     [secureText, secureTextEntry]
   );
   return (
-    <View style={{ width: "100%" }}>
-      <View
-        style={{
-          height: 50,
-          borderRadius: 12,
-          paddingHorizontal: 16,
-          backgroundColor: "#ffffff",
-          borderWidth: 1,
-          borderColor: "#E5E7EB",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 8,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.06,
-          shadowRadius: 4,
-          elevation: 2,
-          ...(editable === false && { opacity: 0.6 }),
-          ...(isFocused && { borderColor: "#F97316", shadowColor: "#F97316" }),
-        }}
-      >
+    <View style={styles.wrapper}>
+      <View style={[
+        styles.container,
+        editable === false && styles.disabled,
+        isFocused && styles.focused,
+      ]}>
         <TextInput
-          style={[
-            {
-              flex: 1,
-              color: "#111827",
-              fontSize: 16,
-            },
-            style,
-          ]}
+          style={[styles.input, style]}
           placeholder={placeholder}
           placeholderTextColor="#9CA3AF"
           value={value}
@@ -65,7 +44,7 @@ export default function MyInput({
         />
         {isPassword && (
           <Pressable onPress={() => setIsHidden((prev) => !prev)} hitSlop={8}>
-            <Text style={{ color: "#6B7280", fontSize: 12 }}>
+            <Text style={styles.eyeText}>
               {isHidden ? (
                 <AntDesign name="eye-invisible" size={24} color="black" />
               ) : (
@@ -75,17 +54,7 @@ export default function MyInput({
           </Pressable>
         )}
       </View>
-      {!!errorText && (
-        <Text
-          style={{
-            marginTop: 6,
-            color: "#ef4444",
-            fontSize: 12,
-          }}
-        >
-          {errorText}
-        </Text>
-      )}
+      {!!errorText && <Text style={styles.error}>{errorText}</Text>}
     </View>
   );
 }

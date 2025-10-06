@@ -1,6 +1,7 @@
 import MyButton from "@/components/MyButton";
 import LogoutConfirmModal from "@/components/settings/LogoutConfirmModal";
 import SettingsListItem from "@/components/settings/SettingsListItem";
+import styles from "@/styles/screens_tabs/setting.styles";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Link } from "expo-router";
@@ -46,85 +47,33 @@ export default function SettingScreen() {
   const [darkModeEnabled, setDarkModeEnabled] = useState(false);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
+    <View style={styles.screen}>
+      <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
         <ScrollView>
-          <Text
-            style={{
-              fontSize: 24,
-              fontWeight: "bold",
-              color: "#111827",
-              paddingHorizontal: 16,
-              paddingBottom: 16,
-            }}
-          >
+          <Text style={styles.header}>
             Settings
           </Text>
 
-          <View
-            style={{
-              borderWidth: 1,
-              marginHorizontal: 12,
-              marginBottom: 12,
-              padding: 12,
-              borderRadius: 12,
-              backgroundColor: "#f9fafb",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={{ uri: "https://i.pravatar.cc/100?img=12" }}
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: 28,
-                marginRight: 12,
-              }}
-            />
+          <View style={styles.profileCard}>
+            <Image source={{ uri: "https://i.pravatar.cc/100?img=12" }} style={styles.avatar} />
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 16, fontWeight: "600", color: "#111827" }}>Nguyen Van A</Text>
-              <Text style={{ color: "#6b7280", marginTop: 2 }}>nguyenvana@example.com</Text>
+              <Text style={styles.name}>Nguyen Van A</Text>
+              <Text style={styles.email}>nguyenvana@example.com</Text>
             </View>
             <Link href="/(stack)/profile" asChild>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  paddingHorizontal: 12,
-                  paddingVertical: 8,
-                  borderRadius: 8,
-                  backgroundColor: "#e5e7eb",
-                }}
-              >
-                <Text style={{ color: "#111827", fontWeight: "600" }}>Edit</Text>
+              <TouchableOpacity activeOpacity={0.8} style={styles.editBtn}>
+                <Text style={styles.editText}>Edit</Text>
               </TouchableOpacity>
             </Link>
           </View>
 
-          <View
-            style={{
-              paddingHorizontal: 16,
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
-              paddingBottom: 20,
-            }}
-          >
+          <View style={styles.sections}>
             {/* config general */}
             <View>
-              <Text
-                style={{
-                  color: "#6b7280",
-                  fontSize: 13,
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                }}
-              >
+              <Text style={styles.sectionTitle}>
                 General
               </Text>
-              <View style={{ backgroundColor: "#ffffff" }}>
+              <View style={styles.sectionBlock}>
                 {items.map((item) => (
                   <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
                 ))}
@@ -133,18 +82,10 @@ export default function SettingScreen() {
 
             {/* config help */}
             <View>
-              <Text
-                style={{
-                  color: "#6b7280",
-                  fontSize: 13,
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                  marginTop: 12,
-                }}
-              >
+              <Text style={[styles.sectionTitle, { marginTop: 12 }]}>
                 Help
               </Text>
-              <View style={{ backgroundColor: "#ffffff" }}>
+              <View style={styles.sectionBlock}>
                 {helpItems.map((item) => (
                   <SettingsListItem key={item.id} title={item.title} leading={ICONS[item.icon]} />
                 ))}

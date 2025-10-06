@@ -1,5 +1,6 @@
 import MyFlatlist from "@/components/MyFlatlist";
 import { View } from "react-native";
+import styles from "../../styles/component_homes/category.part.home.styles";
 import CardRestaurantProduct from "../products/Card.restaurant.product";
 import CategorySectionHome from "./category.section.hom";
 
@@ -1147,13 +1148,7 @@ const CategoryPartHome = () => {
   ];
 
   return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 12,
-      }}
-    >
+    <View style={styles.container}>
       {categories.map((category) => (
         <View key={category.key}>
           <CategorySectionHome data={restaurantsData} title={category.name} />
@@ -1162,7 +1157,7 @@ const CategoryPartHome = () => {
             showsHorizontalScrollIndicator={false}
             data={shuffle(restaurantsData.slice(0, 20))}
             keyExtractor={(item) => item.id}
-            ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+            ItemSeparatorComponent={() => <View style={styles.listSeparator} />}
             renderItem={({ item }) => <CardRestaurantProduct restaurant={item} style={{ width: 280 }} />}
           />
         </View>

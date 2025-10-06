@@ -1,5 +1,6 @@
 import OverviewHeader from "@/components/products/OverviewHeader";
 import OverviewProductCard from "@/components/products/OverviewProductCard";
+import styles from "@/styles/screens_home/overview.product.styles";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { FlatList } from "react-native";
@@ -122,7 +123,7 @@ export default function OverviewProduct() {
   const HeaderHero = () => <OverviewHeader onBack={() => router.back()} query={query} onChangeQuery={setQuery} />;
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor: "#ffffff" }}>
+    <SafeAreaView edges={["top", "left", "right"]} style={styles.screen}>
       {/* Header + bộ lọc cố định */}
       <HeaderHero />
 
@@ -130,7 +131,7 @@ export default function OverviewProduct() {
       <FlatList
         data={sorted}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 10 }}
+        contentContainerStyle={styles.listContent}
         renderItem={({ item }) => <ProductCard item={item} />}
         showsVerticalScrollIndicator={false}
       />
