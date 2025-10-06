@@ -1,0 +1,1226 @@
+import { FlatList, View } from "react-native";
+import CardRestaurantProduct from "../products/Card.restaurant.product";
+import CategorySectionHome from "./category.section.hom";
+
+const CategoryPartHome = () => {
+  const categories = [
+    { key: 1, name: "Top Picks", ref: "" },
+    { key: 2, name: "New Arrivals", ref: "" },
+    { key: 3, name: "Free Delivery", ref: "" },
+    { key: 4, name: "Best Deals", ref: "" },
+    { key: 5, name: "Nearby Eats", ref: "" },
+  ];
+
+  const restaurantsData = [
+    {
+      id: "1",
+      name: "Korean BBQ 1",
+      imageUrl:
+        "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
+      rating: 4.9,
+      reviewCount: 346,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "25-30 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "2",
+      name: "Green Garden 2",
+      imageUrl:
+        "https://bizweb.dktcdn.net/100/339/225/files/jollibee.jpg?v=1627638816252",
+      rating: 4.3,
+      reviewCount: 384,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "21-44 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "3",
+      name: "Pizza Hub 3",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 3.8,
+      reviewCount: 265,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "25-47 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "4",
+      name: "Green Garden 4",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 4.1,
+      reviewCount: 38,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "22-31 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "5",
+      name: "Pho House 5",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.0,
+      reviewCount: 260,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "34-50 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "6",
+      name: "Noodle Corner 6",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.0,
+      reviewCount: 255,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "48-44 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "7",
+      name: "Korean BBQ 7",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 4.8,
+      reviewCount: 108,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "40-50 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "8",
+      name: "Noodle Corner 8",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 4.6,
+      reviewCount: 209,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "42-55 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "9",
+      name: "Green Garden 9",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.3,
+      reviewCount: 455,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "40-58 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "10",
+      name: "Burger Town 10",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 4.5,
+      reviewCount: 517,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "41-32 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "11",
+      name: "Burger Town 11",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 4.4,
+      reviewCount: 291,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "31-62 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "12",
+      name: "Burger Town 12",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.1,
+      reviewCount: 466,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "39-62 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "13",
+      name: "Korean BBQ 13",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 4.1,
+      reviewCount: 233,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "45-33 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "14",
+      name: "Noodle Corner 14",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 4.1,
+      reviewCount: 248,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "50-64 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "15",
+      name: "Coffee Dream 15",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 4.0,
+      reviewCount: 130,
+      isVerified: false,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "29-65 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "16",
+      name: "Green Garden 16",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 5.0,
+      reviewCount: 143,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "36-59 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "17",
+      name: "Taco Bay 17",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.8,
+      reviewCount: 486,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "37-39 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "18",
+      name: "Pho House 18",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 4.8,
+      reviewCount: 412,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "26-44 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "19",
+      name: "Burger Town 19",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 3.9,
+      reviewCount: 501,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "41-57 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "20",
+      name: "Sushi Master 20",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 4.2,
+      reviewCount: 303,
+      isVerified: false,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "35-62 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "21",
+      name: "Burger Town 21",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 5.0,
+      reviewCount: 477,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "34-51 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "22",
+      name: "Pizza Hub 22",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 3.8,
+      reviewCount: 87,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "32-41 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "23",
+      name: "Green Garden 23",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 4.2,
+      reviewCount: 469,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "44-30 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "24",
+      name: "Coffee Dream 24",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 5.0,
+      reviewCount: 220,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "27-35 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "25",
+      name: "Pizza Hub 25",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 3.5,
+      reviewCount: 494,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "21-61 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "26",
+      name: "Pizza Hub 26",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 3.5,
+      reviewCount: 289,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "30-38 min",
+      },
+      categories: ["Sushi", "Japanese", "Asian"],
+    },
+    {
+      id: "27",
+      name: "Green Garden 27",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.6,
+      reviewCount: 118,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "38-51 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "28",
+      name: "Green Garden 28",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 3.6,
+      reviewCount: 395,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "22-41 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "29",
+      name: "Spice Route 29",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 3.5,
+      reviewCount: 348,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "28-57 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "30",
+      name: "Green Garden 30",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 3.8,
+      reviewCount: 283,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "22-32 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "31",
+      name: "Spice Route 31",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.4,
+      reviewCount: 228,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "43-47 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "32",
+      name: "Burger Town 32",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 4.8,
+      reviewCount: 489,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "22-52 min",
+      },
+      categories: ["Sushi", "Japanese", "Asian"],
+    },
+    {
+      id: "33",
+      name: "Noodle Corner 33",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 3.7,
+      reviewCount: 57,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "48-36 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "34",
+      name: "Korean BBQ 34",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.6,
+      reviewCount: 517,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "34-34 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "35",
+      name: "Burger Town 35",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 3.7,
+      reviewCount: 516,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "36-60 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "36",
+      name: "Taco Bay 36",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 4.0,
+      reviewCount: 203,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "38-70 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "37",
+      name: "Coffee Dream 37",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.7,
+      reviewCount: 457,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "32-48 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "38",
+      name: "Korean BBQ 38",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 4.4,
+      reviewCount: 197,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "23-58 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "39",
+      name: "Spice Route 39",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 3.7,
+      reviewCount: 164,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "43-42 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "40",
+      name: "Korean BBQ 40",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 4.1,
+      reviewCount: 401,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "39-50 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "41",
+      name: "Burger Town 41",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 3.9,
+      reviewCount: 231,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "48-67 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "42",
+      name: "Pizza Hub 42",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.2,
+      reviewCount: 394,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "24-64 min",
+      },
+      categories: ["Sushi", "Japanese", "Asian"],
+    },
+    {
+      id: "43",
+      name: "Sushi Master 43",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 3.6,
+      reviewCount: 398,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "42-51 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "44",
+      name: "Spice Route 44",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 4.4,
+      reviewCount: 42,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "37-34 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "45",
+      name: "Noodle Corner 45",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 4.5,
+      reviewCount: 368,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "27-43 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "46",
+      name: "Pho House 46",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 3.9,
+      reviewCount: 495,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "32-43 min",
+      },
+      categories: ["Noodles", "Chinese", "Asian"],
+    },
+    {
+      id: "47",
+      name: "Green Garden 47",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.4,
+      reviewCount: 274,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "37-52 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "48",
+      name: "Pho House 48",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 4.3,
+      reviewCount: 384,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "40-46 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "49",
+      name: "Pizza Hub 49",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 4.5,
+      reviewCount: 141,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "20-56 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "50",
+      name: "Green Garden 50",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 3.8,
+      reviewCount: 456,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "49-46 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "51",
+      name: "Korean BBQ 51",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 4.1,
+      reviewCount: 256,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "39-68 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "52",
+      name: "Pho House 52",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.9,
+      reviewCount: 400,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "50-30 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "53",
+      name: "Sushi Master 53",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.9,
+      reviewCount: 232,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "47-34 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "54",
+      name: "Coffee Dream 54",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 4.0,
+      reviewCount: 492,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "24-64 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "55",
+      name: "Pizza Hub 55",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 3.9,
+      reviewCount: 486,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "41-59 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "56",
+      name: "Taco Bay 56",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.2,
+      reviewCount: 370,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "35-35 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "57",
+      name: "Coffee Dream 57",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 3.6,
+      reviewCount: 189,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "23-67 min",
+      },
+      categories: ["Sushi", "Japanese", "Asian"],
+    },
+    {
+      id: "58",
+      name: "Burger Town 58",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 3.8,
+      reviewCount: 40,
+      isVerified: false,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "37-34 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "59",
+      name: "Noodle Corner 59",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.3,
+      reviewCount: 104,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "31-54 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "60",
+      name: "Spice Route 60",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 4.8,
+      reviewCount: 295,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "50-48 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "61",
+      name: "Taco Bay 61",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.8,
+      reviewCount: 142,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "44-38 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "62",
+      name: "Korean BBQ 62",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 3.7,
+      reviewCount: 340,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "43-69 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "63",
+      name: "Korean BBQ 63",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 4.9,
+      reviewCount: 238,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "22-54 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "64",
+      name: "Noodle Corner 64",
+      imageUrl:
+        "https://simg.zalopay.com.vn/zlp-website/assets/thumb_cua_hang_thuc_an_nhanh_54572c8afa.jpg",
+      rating: 3.8,
+      reviewCount: 483,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "49-38 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "65",
+      name: "Green Garden 65",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 3.9,
+      reviewCount: 456,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "35-44 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "66",
+      name: "Noodle Corner 66",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 4.7,
+      reviewCount: 456,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "45-58 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "67",
+      name: "Noodle Corner 67",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 4.1,
+      reviewCount: 332,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "35-47 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "68",
+      name: "Spice Route 68",
+      imageUrl:
+        "https://media.istockphoto.com/id/1407832840/vi/anh/th%E1%BB%B1c-ph%E1%BA%A9m-gi%C3%BAp-t%C4%83ng-c%C6%B0%E1%BB%9Dng-nguy-c%C6%A1-ung-th%C6%B0-%C4%91%E1%BB%93-%C4%83n-v%E1%BA%B7t.jpg?s=612x612&w=0&k=20&c=Jv9dbVUmBcFq_vVzGSuP9fG-uT1bnQlPoHe0nnkwHbA=",
+      rating: 3.9,
+      reviewCount: 480,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "23-60 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "69",
+      name: "Korean BBQ 69",
+      imageUrl:
+        "https://cdn.luatminhkhue.vn/lmk/articles/98/494903/thuc-an-can-an-bao-nhieu-moi-ngay-494903.jpg",
+      rating: 4.7,
+      reviewCount: 461,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "35-50 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "70",
+      name: "Sushi Master 70",
+      imageUrl:
+        "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/nhung_thuc_pham_tot_cho_suc_khoe_nen_thuong_xuyen_an_2_3b7c479b3d.jpg",
+      rating: 4.0,
+      reviewCount: 93,
+      isVerified: false,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "40-35 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "71",
+      name: "Green Garden 71",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2021/02/02/1324902/bao-quan-thuc-an-da-nau-chin-the-nao-cho-dung-202112271503199495.jpg",
+      rating: 4.2,
+      reviewCount: 419,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "27-42 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "72",
+      name: "Taco Bay 72",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 4.0,
+      reviewCount: 188,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "32-35 min",
+      },
+      categories: ["Pizza", "Italian", "Fast Food"],
+    },
+    {
+      id: "73",
+      name: "Spice Route 73",
+      imageUrl: "https://cdn.luatminhkhue.vn/lmk/article/FastFood-la-gi.png",
+      rating: 3.5,
+      reviewCount: 400,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "26-41 min",
+      },
+      categories: ["Burger", "American", "Fast Food"],
+    },
+    {
+      id: "74",
+      name: "Burger Town 74",
+      imageUrl:
+        "https://cdn.tgdd.vn/Files/2020/12/16/1314124/thuc-an-nhanh-la-gi-an-thuc-an-nhanh-co-tot-hay-khong-202201201405201587.jpg",
+      rating: 3.8,
+      reviewCount: 247,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "49-69 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "75",
+      name: "Green Garden 75",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/Top_mon_an_vat_hot_trend_2025_6_78c5e7c359.jpg",
+      rating: 3.9,
+      reviewCount: 500,
+      isVerified: false,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "44-61 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "76",
+      name: "Spice Route 76",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 4.5,
+      reviewCount: 464,
+      isVerified: true,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "37-68 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+    {
+      id: "77",
+      name: "Pho House 77",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQlJKEXyqTPCbqic9kbs1ATcbORe01YRsBcQ&s",
+      rating: 4.8,
+      reviewCount: 67,
+      isVerified: false,
+      isFavorite: false,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "39-70 min",
+      },
+      categories: ["Vegan", "Healthy", "Organic"],
+    },
+    {
+      id: "78",
+      name: "Spice Route 78",
+      imageUrl:
+        "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/mon_an_man_fa683df2da.jpg",
+      rating: 3.8,
+      reviewCount: 87,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: false,
+        deliveryTime: "21-62 min",
+      },
+      categories: ["BBQ", "Korean", "Grill"],
+    },
+    {
+      id: "79",
+      name: "Coffee Dream 79",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEAtB5aF9nGYTgz9kED3Hf3KEsNS8r9q026Q&s",
+      rating: 4.7,
+      reviewCount: 102,
+      isVerified: true,
+      isFavorite: true,
+      deliveryInfo: {
+        isFreeDelivery: true,
+        deliveryTime: "21-52 min",
+      },
+      categories: ["Coffee", "Dessert", "Cafe"],
+    },
+  ];
+
+  return (
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+      }}
+    >
+      {categories.map((category) => (
+        <View key={category.key}>
+          <CategorySectionHome data={restaurantsData} title={category.name} />
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={restaurantsData.slice(0, 20)}
+            keyExtractor={(item) => item.id}
+            style={{
+              paddingBottom: 16,
+            }}
+            ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+            renderItem={({ item }) => (
+              <CardRestaurantProduct restaurant={item} style={{ width: 280 }} />
+            )}
+          />
+        </View>
+      ))}
+    </View>
+  );
+};
+
+export default CategoryPartHome;
